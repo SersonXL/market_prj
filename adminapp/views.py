@@ -207,12 +207,12 @@ def accommodation_update(request, pk):
     else:
         accommodation_edit_form = AccommodationEditForm(
             instance=edit_accommodation)
-    content = {
-        'title': title,
-        'update_form': accommodation_edit_form,
-        'country': edit_accommodation.country,
-    }
-    return render(request, 'adminapp/accommodation_update.html', content)
+        content = {
+            'title': title,
+            'update_form': accommodation_edit_form,
+            'country': edit_accommodation.country,
+        }
+        return render(request, 'adminapp/accommodation_update.html', content)
 
 
 # админка - карточка предложения компании
