@@ -26,7 +26,7 @@ SECRET_KEY = '%1f-vv58)2)+3nq61h_sdoyi117f!a#ei8r3ar5c!p+tli$lsd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['market-prj-mu0m.onrender.com']
 
 # Application definition
 
