@@ -5,22 +5,20 @@ from django.contrib.auth.models import AbstractUser
 
 
 class TravelUser(AbstractUser):
+    id = models.BigAutoField(primary_key=True)
     avatar = models.ImageField(upload_to='users_avatars', blank=True)
     age = models.PositiveIntegerField(verbose_name='возраст', default=18)
 
-
 class TravelUserProfile(models.Model):
+    id = models.BigAutoField(primary_key=True)
     MALE = 'M'
     FEMALE = 'W'
-
     GENDER_CHOICES = (
         (MALE, 'М'),
         (FEMALE, 'Ж'),
     )
-
     user = models.OneToOneField(
-        TravelUser, unique=True, null=False, db_index=True,
-        on_delete=models.CASCADE)
+        TravelUser, unique=True, null=False, db_index=True, on_delete=models.CASCADE)
     tagline = models.CharField(
         verbose_name='теги', max_length=128, blank=True)
     aboutMe = models.TextField(

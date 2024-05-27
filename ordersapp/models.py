@@ -5,6 +5,7 @@ from mainapp.models import Accommodation
 
 # Заказ
 class Order(models.Model):
+    id = models.BigAutoField(primary_key=True)
     FORMING = 'FM'
     SENT_TO_PROCEED = 'STP'
     PROCEEDED = 'PRD'
@@ -58,6 +59,7 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
+    id = models.BigAutoField(primary_key=True)
     order = models.ForeignKey(Order, related_name='orderitems',
                                on_delete=models.CASCADE)
     accommodation = models.ForeignKey(

@@ -2,6 +2,7 @@ from django.db import models
 
 
 class ListOfCountries(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(verbose_name='имя', max_length=64, unique=True)
     description = models.TextField(verbose_name='описание', blank=True)
     is_active = models.BooleanField(verbose_name='активна', default=True)
@@ -11,6 +12,7 @@ class ListOfCountries(models.Model):
 
 
 class Regions(models.Model):
+    id = models.BigAutoField(primary_key=True)
     country = models.ForeignKey(ListOfCountries, on_delete=models.CASCADE)
     name = models.CharField(verbose_name='имя', max_length=64, unique=True)
     description = models.TextField(verbose_name='описание', blank=True)
@@ -21,6 +23,7 @@ class Regions(models.Model):
 
 
 class Accommodation(models.Model):
+    id = models.BigAutoField(primary_key=True)
     country = models.ForeignKey(ListOfCountries, on_delete=models.CASCADE)
     region = models.ForeignKey(Regions, on_delete=models.CASCADE)
     name = models.CharField(verbose_name='название проживания', max_length=128,
