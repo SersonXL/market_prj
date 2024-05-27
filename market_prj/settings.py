@@ -80,26 +80,12 @@ WSGI_APPLICATION = 'market_prj.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
     'default': dj_database_url.config(
-        default='postgres://sxl:EfOFgtvkFmhDJ0V2gbFquxaqsW43ipV7@dpg-cpa2obtds78s73cq1cdg-a.'
-                'ohio-postgres.render.com/market_project',
+        default='postgres://sxl:EfOFgtvkFmhDJ0V2gbFquxaqsW43ipV7@dpg-cpa2obtds78s73cq1cdg-a.ohio-postgres.render.com/market_project',
         conn_max_age=600,
         ssl_require=True
-        )
-    },
-
-    #'default': {
-     #   'NAME': 'market_prj_db',
-        #'ENGINE': 'django.db.backends.postgresql',
-        #'USER': 'prj_user',
-        #'PASSWORD': 'prj_user',
-        #'HOST': 'localhost',
-        #'PORT': '5432',
-    #}
-
+    )
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
