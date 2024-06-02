@@ -5,7 +5,7 @@
   <div class="users_list">
     <button class="new_user">
       <a href="{% url 'admin:user_create' %}">
-        новый пользователь
+        Новый пользователь
       </a>
     </button>
     {% for object in object_list %}
@@ -16,13 +16,13 @@
           alt="{{ object.username }}">
         <div class="user_role">
           {% if object.is_superuser %}
-            администратор
+            Администратор
           {% else %}
-            пользователь
+            Пользователь
           {% endif %}
           <button>
             <a href="{% url 'admin:user_update' object.pk %}">
-              редактировать
+              Редактировать
             </a>
           </button>
           <button>

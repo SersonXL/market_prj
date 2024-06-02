@@ -1,5 +1,94 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:100,300,400,700');
 
+/* Стили для навигационной панели */
+.navbar {
+    margin: 0;
+    padding: 0;
+    border: none;
+    position: fixed; /* Зафиксируем панель вверху */
+    top: 0;
+    width: 100%;
+    z-index: 1000; /* Убедимся, что панель находится поверх других элементов */
+}
+
+/* Заголовки */
+h2 {
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Карточки */
+.card {
+
+    margin: 0px auto;
+    margin-bottom: 100px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    color: #d9534f;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    color: #555;
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+/* Кнопка */
+.btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+}
+
+.btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+
+/* Контейнер и параграфы */
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Отступы для текста */
+.py-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+.d-flex {
+    display: flex !important;
+}
+
+.align-items-center {
+    align-items: center !important;
+}
+
+.mb-10 {
+    margin-bottom: 2.5rem !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -80,11 +169,14 @@ button.last {
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+
 }
 
 html, body {
     height: 100%;
+
 }
 
 
@@ -234,6 +326,9 @@ html, body {
     margin: 5px auto;
     padding: 0 15px;
 }
+.categories_list .new_category {
+    margin-left: 530px;
+}
 
 .categories_list a {
     color: #555;
@@ -295,34 +390,81 @@ html, body {
     text-decoration: none;
 }
 
+
+
+/* Основной контейнер для списка пользователей */
 .users_list {
-    margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+/* Кнопка для создания нового пользователя */
+.new_user {
+    margin-bottom: 20px;
 }
 
 .users_list a {
     color: #555;
     text-decoration: none;
+    align-items: center;
 }
 
-.users_list .new_user {
-    margin-left: 190px;
-}
+
 
 .users_list button {
     border: 1px solid #eaeaea;
-    border-radius: 5px;
+    border-radius: 50px;
     height: 30px;
     margin: 5px auto;
     padding: 0 15px;
 }
 
+/* Контейнер для каждой записи пользователя */
 .user_record {
-    height: 125px;
-    margin: 15px auto;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 90%; /* Увеличиваем ширину форм пользователей */
+    max-width: 1100px; /* Увеличиваем максимальную ширину */
+    background-color: #f9f9f9;
 }
 
-.user_record, .country_record {
+/* Изображения пользователей в виде круга */
+.user_record img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-right: 15px;
+}
+
+/* Стили для ролей пользователей и кнопок */
+.user_role {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.user_role button {
+    margin-top: 5px;
+}
+
+
+
+/* Обнуляем отступы у текстовых элементов */
+.user_record p {
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+
+.country_record {
     height: 125px;
     margin: 15px auto;
     position: relative;
@@ -334,12 +476,6 @@ html, body {
     opacity: 0.5;
 }
 
-.user_record img {
-    display: block;
-    float: left;
-    height: 125px;
-    border-radius: 25px;
-}
 
 .user_record .user_name {
     display: block;
@@ -406,7 +542,7 @@ html, body {
 .admin_menu ul.menu {
     display: block;
     float: none;
-    width: 550px;
+    width: 1100px;
     height: 50px;
     margin: auto;
     color: #555;
@@ -692,7 +828,7 @@ html, body {
 
 .container {
     width: 1366px;
-    margin: 0 auto;
+    margin: -20 auto;
     min-height: 100%;
 }
 
@@ -1286,6 +1422,48 @@ html, body {
     margin: -384px auto 0;
     clear: both;
 }
+.page-footer {
+    background: linear-gradient(to bottom, #222, #333);
+    padding-top: 20px;
+    padding-bottom: 50px;
+    height: 500px;
+    width: 1110px;
+    max-width: 100%;
+    margin: 0 auto;  /* Центрирование футера */
+    color: white !important; /* Устанавливаем белый цвет текста для футера */
+
+.page-footer a {
+    color: white;  /* Изменение цвета ссылок на белый */
+}
+
+
+.footer-bottom {
+    padding: 10px 0;
+    background: #222;
+    color: white;
+    text-align: center;
+}
+
+.footer-content {
+    background: linear-gradient(to bottom, #222, #333);
+    color: white; /* Устанавливаем белый цвет текста для футера */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+
+.footer-content p,
+.footer-content a {
+    color: silver !important; /* Устанавливаем белый цвет текста для всех элементов внутри футера */
+}
+
+/* Убираем отступы сверху и снизу для hr */
+.footer-content hr {
+    border-top: 1px solid grey;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 
 .footer form {
     position: relative;

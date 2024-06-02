@@ -1,7 +1,7 @@
 <ul class="menu">
     <li>
         <a href="{% url 'main' %}">
-            на сайт
+            На сайт
         </a>
     </li>
     <li>
@@ -9,7 +9,7 @@
            class="{% if request.resolver_match.url_name == 'users' %}
                 active
                  {% endif %}">
-            пользователи
+            Пользователи
         </a>
     </li>
     <li>
@@ -17,7 +17,7 @@
            class="{% if request.resolver_match.url_name == 'countries' or country.name %}
                 active
               {% endif %}">
-            страны
+            Cтраны
             {% if country %}
                 :<span>{{ country.name }}</span>
             {% endif %}
