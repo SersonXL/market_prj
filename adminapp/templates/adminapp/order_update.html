@@ -1,0 +1,16 @@
+{% extends 'adminapp/base.html' %}
+{% block content %}
+<h2>Редактировать заказ #{{ order_id }}</h2>
+<form method="post">
+    {% csrf_token %}
+    <p><label>Пользователь:</label> {{ user }}</p>
+    {% for field in form %}
+        {% if field.name != 'user' %}
+            <p>{{ field.label_tag }} {{ field }}</p>
+        {% else %}
+            {{ field }}  <!-- Это скроет поле user -->
+        {% endif %}
+    {% endfor %}
+    <button type="submit">Сохранить</button>
+</form>
+{% endblock %}

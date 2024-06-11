@@ -27,13 +27,14 @@
 
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{% url 'auth:edit' %}">Профиль</a>
-                        <a class="dropdown-item" href="{% url 'basket:view' %}">Корзина</a>
-                        <a class="dropdown-item" href="{% url 'order:orders_list' %}">Заказы</a>
-
+                        {% if not request.user.is_superuser %}
+                            <a class="dropdown-item" href="{% url 'basket:view' %}">Корзина</a>
+                            <a class="dropdown-item" href="{% url 'order:orders_list' %}">Заказы</a>
+                        {% endif %}
 
                         {% if user.is_superuser %}
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{% url 'admin:users' %}">Панель админа</a>
+                        <a class="dropdown-item" href="{% url 'admin:orders' %}">Панель админа</a>
                         {% endif %}
                     </div>
 

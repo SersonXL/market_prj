@@ -1,0 +1,35 @@
+{% extends 'adminapp/base.html' %}
+{% load static %}
+
+{% block content %}
+  <div class="container">
+    <div class="card mt-5">
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Создан</th>
+              <th>Обновлен</th>
+              <th>Статус</th>
+              <th>Действие</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in orders %}
+              <tr>
+                <td>{{ order.id }}</td>
+                <td>{{ order.created }}</td>
+                <td>{{ order.updated }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>
+                  <a href="{% url 'admin:order_update' order.pk %}" class="btn btn-secondary">Редактировать</a>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}

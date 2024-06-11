@@ -11,8 +11,8 @@ class Basket(models.Model):
         related_name='basket'
     )
     accommodation = models.ForeignKey(Accommodation, on_delete=models.CASCADE)
-    nights = models.PositiveIntegerField(verbose_name='кол-во ночей', default=0)
-    add_datetime = models.DateTimeField(verbose_name='время', auto_now_add=True)
+    nights = models.PositiveIntegerField(verbose_name='Кол-во ночей', default=0)
+    add_datetime = models.DateTimeField(verbose_name='Время', auto_now_add=True)
 
     # стоимость одного предложения компании
     @property

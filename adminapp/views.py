@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import HttpResponseRedirect
 from django.urls import reverse
@@ -12,11 +11,31 @@ from django.views.generic.detail import DetailView
 from django.utils.decorators import method_decorator
 from mainapp.models import Accommodation
 from mainapp.models import ListOfCountries
+from mainapp.models import Regions
 from authapp.models import TravelUser
 from authapp.forms import TravelUserRegisterForm
 from adminapp.forms import TravelUserAdminEditForm
 from adminapp.forms import AccommodationEditForm
 # from adminapp.forms import ListOfCountriesEditForm
+from ordersapp.models import Order
+from .forms import OrderForm
+
+
+class OrderListView(ListView):
+    model = Order
+    template_name = 'adminapp/orders.html'
+    context_object_name = 'orders'
+
+def order_update(request, pk):
+    order = get_object_or_404(Order, pk=pk)
+    if request.method == 'POST':
+        form = OrderForm(request.POST, instance=order)
+        if form.is_valid():
+            form.save()
+            return redirect('admin:orders')
+    else:
+        form = OrderForm(instance=order)
+    return render(request, 'adminapp/order_update.html', {'form': form, 'order_id': pk, 'user': order.user})
 
 
 # админка - список пользователей
@@ -146,6 +165,55 @@ class CountryDeleteView(DeleteView):
         return HttpResponseRedirect(self.get_success_url())
 
 
+@user_passes_test(lambda u: u.is_superuser)
+def regions(request):
+    title = 'админка/регионы'
+
+    regions_list = Regions.objects.all()
+
+    content = {
+        'title': title,
+        'objects': regions_list
+    }
+
+    return render(request, 'adminapp/regions.html', content)
+
+
+# админка - создание страны
+class RegionCreateView(CreateView):
+    model = Regions
+    template_name = 'adminapp/region_update.html'
+    success_url = reverse_lazy('admin:regions')
+    fields = '__all__'
+
+
+# админка - редактирование страны
+class RegionUpdateView(UpdateView):
+    model = Regions
+    template_name = 'adminapp/region_update.html'
+    success_url = reverse_lazy('admin:regions')
+    fields = '__all__'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'регионы/редактирование'
+
+        return context
+
+
+# админка - удаление страны
+class RegionDeleteView(DeleteView):
+    model = Regions
+    template_name = 'adminapp/region_delete.html'
+    success_url = reverse_lazy('admin:regions')
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.is_active = False
+        self.object.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
 # админка - список предложений компании
 @user_passes_test(lambda u: u.is_superuser)
 def accommodations(request, pk):
@@ -218,7 +286,7 @@ def accommodation_update(request, pk):
 # админка - карточка предложения компании
 class AccommodationDetailView(DetailView):
     model = Accommodation
-    template_name = 'adminapp/accommodation_read.html'
+
 
 
 # админка - удаление предложения

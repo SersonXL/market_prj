@@ -1,5 +1,6 @@
 import adminapp.views as adminapp
 from django.urls import path
+from . import views
 
 
 app_name = 'adminapp'
@@ -24,9 +25,18 @@ urlpatterns = [
          adminapp.accommodation_create, name='accommodation_create'),
     path('accommodation/update/<int:pk>/', adminapp.accommodation_update,
          name='accommodation_update'),
-    path('accommodation/read/<int:pk>/',
-         adminapp.AccommodationDetailView.as_view(),
-         name='accommodation_read'),
+
     path('accommodation/delete/<int:pk>/',
          adminapp.accommodation_delete, name='accommodation_delete'),
+    path('orders/', views.OrderListView.as_view(), name='orders'),
+    path('orders/update/<int:pk>/', views.order_update, name='order_update'),
+
+    path('regions/read/', adminapp.regions, name='regions'),
+    path('regions/create/', adminapp.RegionCreateView.as_view(),
+         name='region_create'),
+    path('regions/update/<int:pk>/', adminapp.RegionUpdateView.as_view(),
+         name='region_update'),
+    path('regions/delete/<int:pk>/', adminapp.RegionDeleteView.as_view(),
+         name='region_delete'),
+
 ]
