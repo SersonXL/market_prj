@@ -6,7 +6,7 @@ from django.contrib.auth.models import AbstractUser
 
 class TravelUser(AbstractUser):
     id = models.BigAutoField(primary_key=True)
-    avatar = models.ImageField(verbose_name='аватарка', upload_to='users_avatars', blank=True)
+    avatar = models.ImageField(verbose_name='аватар', upload_to='users_avatars', blank=True)
     age = models.PositiveIntegerField(verbose_name='возраст', default=18)
 
 
