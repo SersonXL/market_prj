@@ -13,7 +13,7 @@ class ListOfCountries(models.Model):
 
 class Regions(models.Model):
     id = models.BigAutoField(primary_key=True)
-    country = models.ForeignKey(ListOfCountries, on_delete=models.CASCADE)
+    country = models.ForeignKey(ListOfCountries, verbose_name='Страна', on_delete=models.CASCADE)
     name = models.CharField(verbose_name='Имя', max_length=64, unique=True)
     description = models.TextField(verbose_name='Описание', blank=True)
     is_active = models.BooleanField(verbose_name='Активна', default=True)
